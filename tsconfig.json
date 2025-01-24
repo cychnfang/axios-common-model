@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "strict": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationDir": "dist/types"
+  },
+  "exclude": ["scripts"]
+}

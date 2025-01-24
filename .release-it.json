@@ -1,0 +1,31 @@
+{
+  "git": {
+    "commitMessage": "feat: v${version} release",
+    "requireCleanWorkingDir": true,
+    "tagAnnotation": "Release v${version}",
+    "tagName": "v${version}"
+  },
+  "hooks": {
+    "after:bump": "npm run build",
+    "after:git:release": "if [ \"${isPreRelease}\" != \"true\" ]; then git tag -f latest && git push -f origin latest; fi"
+  },
+  "npm": {
+    "publishArgs": ["--provenance"],
+    "skipChecks": true,
+    "publish": false
+  },
+  "github": {
+    "draft": true,
+    "release": true,
+    "skipChecks": false,
+    "releaseName": "v${version}"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "angular"
+      },
+      "infile": "CHANGELOG.md"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "name": "axios-common-model",
+  "version": "0.0.0",
+  "type": "module",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "rollup --config rollup.config.js",
+    "release": "release-it",
+    "verify-commit": "tsx scripts/verify-commit.ts",
+    "lint": "eslint --cache .",
+    "format": "prettier --write --cache .",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "pnpx simple-git-hooks"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^9.0.3",
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.10.0",
+    "eslint": "^9.15.0",
+    "lint-staged": "^15.2.10",
+    "picocolors": "^1.1.1",
+    "prettier": "^3.4.1",
+    "release-it": "^17.10.0",
+    "rollup": "^4.28.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "simple-git-hooks": "^2.11.1",
+    "tslib": "^2.8.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.16.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.8"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "pnpm run verify-commit"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --cache --ignore-unknown"
+    ],
+    "packages/*/{src,types}/**/*.ts": [
+      "eslint --cache --fix"
+    ],
+    "packages/**/*.d.ts": [
+      "eslint --cache --fix"
+    ]
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "files": [
+    "packages.json",
+    "dist/**/*"
+  ]
+}
