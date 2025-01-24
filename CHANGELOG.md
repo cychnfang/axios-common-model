@@ -1,3 +1,11 @@
+# Changelog
+
+# 1.0.0 (2025-01-24)
+
+### Features
+
+- init ([43833cd](https://github.com/cychnfang/axios-common-model/commit/43833cde2d272d4f210e682d2702b80172204063))
+
 # [7.0.0](https://github.com/cychnfang/axios-admin-model/compare/v6.0.0...v7.0.0) (2024-11-29)
 
 ### Features
