@@ -11,14 +11,18 @@ on:
           - minor
           - major
         default: patch
+      dry-run:
+        type: boolean
+        description: Perform dry-run
+        default: true
 
 defaults:
   run:
     shell: bash
 
 jobs:
-  runs-on: ubuntu-latest
   build:
+    runs-on: ubuntu-latest
     name: build dist
     permissions:
       contents: write
