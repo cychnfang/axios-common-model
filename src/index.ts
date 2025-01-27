@@ -222,11 +222,18 @@ export function get<R = any, D = any>(
           response.data,
           modelConfig as Partial<ModelConfig>,
         )
-        resolve(
-          isFunction(formatResponse)
-            ? (formatResponse as FormatResponse<Reponse<R>>)(response.data)
-            : response.data.data,
-        )
+
+        const isSuccess = response.data.code === model.global_success_code
+        if (isSuccess) {
+          resolve(
+            isFunction(formatResponse)
+              ? (formatResponse as FormatResponse<Reponse<R>>)(response.data)
+              : response.data.data,
+          )
+          return
+        }
+
+        reject(response.data.message)
       })
       .catch((e) => {
         reject(handleError(e))
